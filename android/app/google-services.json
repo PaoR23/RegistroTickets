@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "656958765846",
+    "project_id": "ticketmobile2",
+    "storage_bucket": "ticketmobile2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656958765846:android:b2e517bed01f29bd05ee37",
+        "android_client_info": {
+          "package_name": "com.registrotickets"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByB4Sdvb5M2XZkCeygzlloAomiACD4Rqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656958765846:android:e28d6f17b43ef74305ee37",
+        "android_client_info": {
+          "package_name": "com.ticketmobile2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByB4Sdvb5M2XZkCeygzlloAomiACD4Rqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
