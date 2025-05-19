@@ -1,9 +1,36 @@
-import React, { useContext } from 'react';
-import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
-import { TicketContext } from '../context/TicketContext';
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator } from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 
 const TicketList = () => {
-  const { tickets } = useContext(TicketContext);
+  const [tickets, setTickets] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = firestore()
+      .collection('tickets')
+      .orderBy('fecha', 'desc')
+      .onSnapshot(querySnapshot => {
+        const data = [];
+        querySnapshot.forEach(doc => {
+          data.push({ id: doc.id, ...doc.data() });
+        });
+        setTickets(data);
+        setLoading(false);
+      });
+
+    firestore()
+      .collection('tickets')
+      .get()
+      .then(snapshot => {
+        console.log('Conexión a Firestore exitosa, documentos:', snapshot.size);
+      })
+      .catch(error => {
+        console.log('Error de conexión a Firestore:', error);
+      });
+
+    return () => unsubscribe();
+  }, []);
 
   const renderItem = ({ item }) => (
     <View style={styles.item}>
@@ -17,6 +44,12 @@ const TicketList = () => {
       </View>
     </View>
   );
+
+  console.log('Tickets desde Firestore:', tickets);
+
+  if (loading) {
+    return <ActivityIndicator size="large" color="#1976d2" style={{ marginTop: 40 }} />;
+  }
 
   return (
     <FlatList
